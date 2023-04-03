@@ -117,6 +117,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 65%;
+    height: 1020px;
 }
 
 .row1 {

@@ -173,7 +173,7 @@ function showCatelogy(element) {
 // Xử lý ô tìm kiếm nhập tên vắc xin cần tìm và hiển thị 
 function searchItemVx() {
     const inputSearch = document.getElementById('search').value.toLowerCase();
-    console.log(inputSearch);
+    // console.log(inputSearch);
     const vacxinListItems = document.querySelectorAll('.vacxin_item');
     
     vacxinListItems.forEach(function(vacxin) {
