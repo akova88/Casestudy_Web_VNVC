@@ -185,5 +185,50 @@ function searchItemVx() {
             vacxin.style.display = 'none';
         }
     })
-}  
+}
+
+// Xử lý nút Quản lý Vắc xin
+
+const btnvx = document.querySelector('.btnvx');
+const model = document.querySelector('.model');
+const containermd = document.querySelector('.container-md');
+const home = document.querySelector('.ti-home');
+
+btnvx.addEventListener('click', function() {
+    model.classList.add('open')
+});
+
+model.addEventListener('click', function() {
+    model.classList.remove('open');
+})
+home.addEventListener('click', function() {
+    model.classList.remove('open');
+})
+
+containermd.addEventListener('click', function(event) {
+    event.stopPropagation();
+})
+
+// Hiển thị danh mục quản lý Vx
+
+function renderVx_Manager() {
+    let tbVendor = document.querySelector('#tbVendor');
+    console.log(tbVendor);
+    for (let vacxin of vacxinList) {
+        tbVendor.innerHTML += `
+            <tr>
+                <td>${vacxin.category}</td>
+                <td>${vacxin.name}</td>
+                <td class="text-right">${vacxin.preven_vx}</td>
+                <td class="text-right">${formatCurrency(vacxin.price_vc)}</td>
+                <td class="text-right">${vacxin.describe}</td>
+                <td class="text-center">
+                    <button class="btn-danger" onclick="removeVendor()">Delete</button>
+                    <button class="btn-dark" onclick="editVendor()" >Edit</button>
+                </td>
+            </tr>
+        `; 
+    }
+}
+renderVx_Manager();
   

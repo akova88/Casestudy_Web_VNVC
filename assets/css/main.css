@@ -303,3 +303,44 @@ h5 {
     font-weight: 500;
 }
 
+.model {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.model.open {
+    display: flex;
+}
+
+.btnvx {
+    background-color: #f39021;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 140px;
+    height: 40px;
+}
+
+.ti-home {
+    float: right;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-right: 8px 8px;
+    padding: 3px 8px;
+}
+
+.ti-home:hover {
+    cursor: pointer;
+    background-color: gray;
+    border-radius: 2px;
+}
