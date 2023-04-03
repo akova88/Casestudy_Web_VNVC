@@ -53,12 +53,13 @@ body {
     width: 100px;
     color: black;
     margin-left: 5px;
+    font-size: 1.4rem;
 }
 
 .form-control{
     border: none;
     outline: none;
-    width: 230px;
+    width: 300px;
     padding: 5px 7px;
     border-radius: 3px;
 }
@@ -80,61 +81,57 @@ body {
 
 .btn-warning:hover{
     background-color: darkorange;
-    border: 1px solid darkorange;
+    border: none;
 }
 
 .btn-danger{
-    background-color: red;
+    background-color: #2a388f;
     color:white;
-    border: 1px sold red;
+    border: none;
 }
 .btn-danger:hover{
-    background-color: darkred;
-    border: darkred;
+    background-color: #6470bc;
+    border: #6470bc;
 }
 
 .btn-dark{
-    background-color: black;
+    background-color: darkorange;
     color:white;
-    border: 1px solid black;
+    border: 1px solid darkorange;
 }
 
 .btn-dark:hover{
-    background-color: grey;
-    border: 1px solid grey;
+    background-color: darkgoldenrod;
+    border: 1px solid darkgoldenrod;
 }
 .vendor-items{
     width: 100%;
-    margin-top: 1px;
 }
 .table{
     width: 100%;
     border-collapse: collapse;
-    border:solid #000;
+    border:solid 1px #2a388f;
+    font-size: 1rem;
 }
 
 .thead-dark>tr>th{
-    background-color: black;
+    background-color: #2a388f;
     padding: 10px 0px;
     color: white;
+    font-size: 1.2rem;
 }
-.tfoot-dark>tr>th{
-    background-color: gray;
-    padding: 10px 0px;
-    color: white;
-}
-
 .table>tbody>tr>td{
-    padding: 5px 2px;
-    background-color: lightgray;
-    border:solid 1px #000;
+    padding: 4px 2px;
+    background-color: #85add1;
+    border:solid 1px gray;
 }
-.table>tbody>tr:nth-child(odd){
-    background-color: lightgray;
+.table>tbody>tr:nth-child(even){
+    background-color: #cccc;
+    cursor: pointer;
 }
 
 .table>tbody>tr:hover{
-    background-color: darkgray;
+    background-color: #6470bc;
 }
 
 .text-right{

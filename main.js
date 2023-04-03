@@ -1,6 +1,6 @@
 class Vacxin {
-    constructor(name, preven_vx, price_vc, describe, category) {
-
+    constructor(id,name, preven_vx, price_vc, describe, category) {
+        this.id = id;
         this.name = name;              //Tên Vắc xin
         this.preven_vx = preven_vx;    //Nguồn gốc: 
         this.price_vc = price_vc;      // Giá Vc
@@ -13,23 +13,23 @@ class Vacxin {
 
 
 let vacxinList = [
-    new Vacxin('VẮC XIN CÚM INFLUVAC TETRA 0.5ML',
+    new Vacxin(1,'VẮC XIN CÚM INFLUVAC TETRA 0.5ML',
         'Nguồn gốc: Abbott (Hà Lan)', 299000, 'Cúm','Vắc xin cho trẻ em'),
-    new Vacxin('VẮC XIN GCFLU QUADRIVALENT',
+    new Vacxin(2,'VẮC XIN GCFLU QUADRIVALENT',
         'Nguồn gốc: Cúm', 345000, 'Cúm','Vắc xin cho trẻ em'),
-    new Vacxin('VẮC XIN IVACFLU-S 0,5ML (VIỆT NAM) PHÒNG BỆNH CÚM',
+    new Vacxin(3,'VẮC XIN IVACFLU-S 0,5ML (VIỆT NAM) PHÒNG BỆNH CÚM',
         'Nguồn gốc: IVAC (Việt Nam)', 190000, 'Cúm (người lớn > 18 tuổi)','Vắc xin cho trẻ em tiền học đường'),
-    new Vacxin('VẮC XIN PHÒNG DẠI VERORAB',
+    new Vacxin(4,'VẮC XIN PHÒNG DẠI VERORAB',
         'Nguồn gốc: Sanofi Pasteur (Pháp)', 323000, 'Dại','Vắc xin cho trẻ em tiền học đường'),
-    new Vacxin('VẮC XIN ABHAYRAB 0.5ML (ẤN ĐỘ) PHÒNG BỆNH DẠI (TTD)',
+    new Vacxin(5,'VẮC XIN ABHAYRAB 0.5ML (ẤN ĐỘ) PHÒNG BỆNH DẠI (TTD)',
         'Nguồn gốc: Human Biologicals Institute (Ấn Độ)', 215000, 'Dại','Vắc xin cho tuổi vị thành niên và thanh niên'),
-    new Vacxin('VẮC XIN ABHAYRAB 0.5ML (ẤN ĐỘ) PHÒNG BỆNH DẠI (TB)',
+    new Vacxin(6,'VẮC XIN ABHAYRAB 0.5ML (ẤN ĐỘ) PHÒNG BỆNH DẠI (TB)',
         'Nguồn gốc: Human Biologicals Institute (Ấn Độ)', 255000, 'Dại','Vắc xin cho tuổi vị thành niên và thanh niên'),
-    new Vacxin('VẮC XIN PHÒNG TIÊU CHẢY DO ROTA VIRUS - ROTATEQ',
+    new Vacxin(7,'VẮC XIN PHÒNG TIÊU CHẢY DO ROTA VIRUS - ROTATEQ',
         'Nguồn gốc: MSD (Mỹ)', 665000, 'Tiêu chảy cấp do Rotavirus','Vắc xin cho người trưởng thành'),
-    new Vacxin('VẮC XIN ROTAVIN M1 (VIỆT NAM) PHÒNG TIÊU CHẢY CẤP DO ROTA VIRUS',
+    new Vacxin(8,'VẮC XIN ROTAVIN M1 (VIỆT NAM) PHÒNG TIÊU CHẢY CẤP DO ROTA VIRUS',
         'Nguồn gốc: Polyvac (Việt Nam)', 490000, 'Tiêu chảy cấp do Rotavirus','Vắc xin cho người trưởng thành'),
-    new Vacxin('VẮC XIN VIÊM GAN A+B TWINRIX',
+    new Vacxin(9,'VẮC XIN VIÊM GAN A+B TWINRIX',
         'Nguồn gốc: GSK (Bỉ)', 560000, 'Viêm gan A, Viêm gan B','Vắc xin cho phụ nữ chuẩn bị trước mang thai'),
 ];
 
@@ -213,22 +213,122 @@ containermd.addEventListener('click', function(event) {
 
 function renderVx_Manager() {
     let tbVendor = document.querySelector('#tbVendor');
-    console.log(tbVendor);
-    for (let vacxin of vacxinList) {
+    
+    for (let i=0; i< vacxinList.length; i++) {
         tbVendor.innerHTML += `
             <tr>
-                <td>${vacxin.category}</td>
-                <td>${vacxin.name}</td>
-                <td class="text-right">${vacxin.preven_vx}</td>
-                <td class="text-right">${formatCurrency(vacxin.price_vc)}</td>
-                <td class="text-right">${vacxin.describe}</td>
+                <td>${vacxinList[i].id}</td>
+                <td>${vacxinList[i].name}</td>
+                <td class="text-right">${vacxinList[i].preven_vx}</td>
+                <td class="text-right">${formatCurrency(vacxinList[i].price_vc)}</td>
+                <td class="text-right">${vacxinList[i].describe}</td>
                 <td class="text-center">
-                    <button class="btn-danger" onclick="removeVendor()">Delete</button>
-                    <button class="btn-dark" onclick="editVendor()" >Edit</button>
+                    <button class="btn-danger" onclick="removeVendor(${vacxinList[i].id})">Delete</button>
+                    <button class="btn-dark" onclick="editVendor(${vacxinList[i].id})" >Edit</button>
                 </td>
             </tr>
         `; 
     }
 }
 renderVx_Manager();
+
+function findVacxinById(id) {
+    for (let i = 0; i < vacxinList.length; i++) {
+        if (vacxinList[i].id == id) {
+            return vacxinList[i];
+        }
+    }
+    return null;
+};
+
+function findMaxId() {
+    let max = 0;
+    for (let i = 0; i < vacxinList.length; i++) {
+        if (vacxinList[i].id > max) {
+            max = vacxinList[i].id
+        }
+    }
+    return max;
+};
+
+function createVendor() {
+    let name = document.getElementById("item").value;
+    let preven_vx = document.getElementById("quantity").value;
+    let price_vc = Number(document.getElementById("price").value);
+    if (name == "" || preven_vx == "" || price_vc == "") {
+        alert('Vui lòng nhập đầy đủ dữ liệu');
+    }
+    else {
+        let id = findMaxId() + 1;
+        let vacxin = new Vacxin(id, name, preven_vx, price_vc);
+
+        vacxinList.push(vacxin);
+
+        let tbVendor = document.querySelector('#tbVendor');
+        tbVendor.innerHTML = '';
+        renderVx_Manager();
+        clearForm();
+    }
+}
+
+function editVendor(id) {
+    let vacxin = findVacxinById(id);
+
+    document.getElementById("item").value = vacxin.name;
+    document.getElementById("quantity").value = vacxin.preven_vx;
+    document.getElementById("price").value = vacxin.price_vc;
+    document.getElementById("vendorId").value = vacxin.id;
+
+    document.getElementById('btnCreate').classList.add("d-none");
+    document.getElementById('btnSave').classList.remove("d-none");
+    document.getElementById('btnCancel').classList.remove("d-none");
+
+};
+
+function clearForm() {
+    document.getElementById("item").value = null;
+    document.getElementById("quantity").value = null;
+    document.getElementById("price").value = null;
+
+    document.getElementById('btnCreate').classList.remove("d-none");
+    document.getElementById('btnSave').classList.add("d-none");
+    document.getElementById('btnCancel').classList.add("d-none");
+}
+
+function cancel() {
+    clearForm();
+}
+
+function save() {
+    let name = document.getElementById("item").value;
+    let preven_vx = document.getElementById("quantity").value;
+    let price_vc = Number(document.getElementById("price").value);
+    let id = Number(document.getElementById("vendorId").value);
+    if (name == "" || preven_vx == "" || price_vc == "") {
+        alert('Vui lòng nhập đầy đủ dữ liệu');
+    }
+    else {
+        let vacxin = findVacxinById(id);
+        vacxin.name = name;
+        vacxin.price = price;
+        vacxin.preven_vx = preven_vx;
+        let tbVendor = document.querySelector('#tbVendor');
+        tbVendor.innerHTML = '';
+        renderVx_Manager();
+        clearForm();
+    };
+};
+
+function removeVendor(id) {
+    let confirm = window.confirm('Bạn có muốn xóa Vắc xin này không?');
+    if (confirm == true) {
+        vacxinList = vacxinList.filter(function (vacxin) {
+            return vacxin.id != id;
+        })
+        let tbVendor = document.querySelector('#tbVendor');
+        tbVendor.innerHTML = '';
+        renderVx_Manager();
+        clearForm();
+    }
+}
   
