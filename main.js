@@ -33,6 +33,8 @@ let vacxinList = [
         'Nguồn gốc: GSK (Bỉ)', 560000, 'Viêm gan A, Viêm gan B','Vắc xin cho phụ nữ chuẩn bị trước mang thai'),
 ];
 
+
+
 function renderVx() {
     let row = document.querySelector('.row');
     for (let vacxin of vacxinList) {
@@ -234,7 +236,7 @@ renderVx_Manager();
 
 function findVacxinById(id) {
     for (let i = 0; i < vacxinList.length; i++) {
-        if (vacxinList[i].id == id) {
+        if (vacxinList[i].id === id) {
             return vacxinList[i];
         }
     }
@@ -310,7 +312,7 @@ function save() {
     else {
         let vacxin = findVacxinById(id);
         vacxin.name = name;
-        vacxin.price = price;
+        vacxin.price_vc = price_vc;
         vacxin.preven_vx = preven_vx;
         let tbVendor = document.querySelector('#tbVendor');
         tbVendor.innerHTML = '';
